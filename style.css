@@ -1,0 +1,386 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700|Sansita+One);
+:root {
+    --font-color: black;
+    --bg-color: white;
+    --sqaure: rgb(37, 133, 212);
+    --sqaure-hover: rgb(32, 121, 194);
+    --x-square: rgb(29, 173, 240);
+    --o-square: rgb(218, 95, 39);
+    --win-square: rgb(73, 209, 10);
+    --x-color: white;
+    --o-color: white;
+    --x-color-hover: rgb(218, 218, 218);
+    --o-color-hover: rgb(218, 218, 218);
+}
+
+[data-theme="dark"] {
+    --font-color: #4f4d8b;
+    --bg-color: #0f0f24;
+    --sqaure: #4f4d8b;
+    --sqaure-hover: #45437a;
+    --x-square: #5f5bad;
+    --o-square: rgb(163, 64, 19);
+    --win-square: rgb(51, 160, 1);
+    --x-color: white;
+    --o-color: white;
+    --x-color-hover: rgb(218, 218, 218);
+    --o-color-hover: rgb(218, 218, 218);
+}
+html {
+    height: 100%;
+    font: 20px "Lato", sans-serif;
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Roboto Slab', serif;
+    background: var(--bg-color);
+    color: var(--font-color); 
+}
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 80px;
+}
+  
+.theme-switch input {
+    display:none;
+}
+  
+.slider {
+    background-color: rgb(189, 189, 189);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    outline: none;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+.slider:after {
+    color: #fff;
+    font: 15px "Sansita One", serif;
+    top: 8px;
+    content: "Light";
+    height: 26px;
+    right: 20px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+input:checked + .slider {
+    background-color: #050f06;
+}
+  
+input:checked + .slider:before {
+    transform: translateX(46px);
+}
+input:checked + .slider:after {
+    content: "Dark";
+    transform: translateX(-26px);
+}
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
+}
+.status {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+    border-radius: 20px;
+    width: fit-content !important;
+    height: fit-content !important;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.status span {
+    margin: auto;
+    margin-top: 30%;
+    white-space: nowrap;
+}
+.toggler {
+    transition: ease all 0.3s;
+}
+
+.gcontainer {
+    align-items: center !important;
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+}
+.gcontainer > div {
+    margin-top: 2%;
+    margin-left: -1%;
+}
+.gameContainer {
+    position: relative;
+    width: 300px !important;
+    height: 300px !important;
+}
+@media (max-width: 900px) {
+    .gameContainer {
+        margin-left: 1%;
+    }
+}
+.squares {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+.row {
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    height: 33.33%;
+}
+.square {
+    width: 33.33%;
+    max-width: 33.33%;
+    cursor: pointer;
+    margin: 5px;
+    background-color: var(--sqaure);
+    border-radius: 5px;
+}
+.square:hover {
+    background-color: var(--sqaure-hover);
+}
+.square.x-colored {
+    background-color: var(--x-square);
+}
+.square.o-colored {
+    background-color: var(--o-square);
+}
+.square.win {
+    background-color: var(--win-square) !important;
+}
+
+.options {
+    transition: ease all 0.3s;
+}
+
+.options.full {
+    position: fixed;
+    left: 43%;
+    top: 36%;
+    display: flex;
+    flex-direction: column;
+    transition: ease all 0.3s;
+}
+.x:before, .x:after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 10px;
+    height: 74px;
+    background-color: var(--x-color);
+}
+.x:not(.noanim):before {
+    animation-name: rotateP;
+    animation-duration: 0.15s;
+    transform: rotate(45deg);
+}
+.x:not(.noanim):after {
+    animation-name: rotateN;
+    animation-duration: 0.15s;
+    transform: rotate(-45deg);
+}
+.x.noanim:before {
+    transform: rotate(45deg);
+    background-color: var(--x-color-hover);
+}
+.x.noanim:after {
+    transform: rotate(-45deg);
+    background-color: var(--x-color-hover);
+}
+.o.noanim {
+    border-color: var(--o-color-hover);
+}
+@keyframes rotateP {
+    0%   {transform: rotate(0deg);}
+    25%  {transform: rotate(15deg);}
+    50%  {transform: rotate(25deg);}
+    75%  {transform: rotate(35deg);}
+    100% {transform: rotate(45deg);}
+}
+@keyframes rotateN {
+    0%   {transform: rotate(0deg);}
+    25%  {transform: rotate(-15deg);}
+    50%  {transform: rotate(-25deg);}
+    75%  {transform: rotate(-35deg);}
+    100% {transform: rotate(-45deg);}
+}
+
+.x {
+    position: relative;
+    left: 45%;
+    top: 15%;
+    width: 50%;
+    height: 50%;
+    pointer-events: none;
+}
+.o {
+    position: relative;
+    left: 15%;
+    top: 15%;
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    border: 10px solid var(--o-color);
+    pointer-events: none;
+}
+.o:not(.noanim) {
+    animation-name: autosize;
+    animation-duration: 0.2s;
+}
+@keyframes autosize {
+    from {width: 0%;
+        height: 0%;
+        left: 50%;
+        top: 50%;}
+    to {width: 50%;
+        height: 50%;
+        left: 15%;
+        top: 15%;}
+}
+@media (max-width: 900px) {
+    .gcontainer {
+        align-items: center !important;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20%;
+    }
+    .gcontainer > div {
+        margin-top: 7%;
+    }
+    
+    .options.full {
+        left: 36%;
+        top: 35%;
+    }
+}
+
+#btn {
+    background: none;
+    color: var(--font-color);
+    border: 2px solid var(--font-color);
+    width: 150px;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    margin-bottom: 10px;
+    transition: ease all 0.3s;
+}
+@media (max-width: 900px) {
+    .tab {
+        top: 30%;
+        left: 20%;
+    }
+}
+
+#btn:hover {
+    background: var(--font-color);
+    color: var(--bg-color);
+    cursor: pointer;
+}
+.hide-on-begin#btn:hover {
+    background: var(--font-color);
+    color: var(--bg-color);
+    cursor: pointer;
+}
+.tab {
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.tabv {
+    background: none;
+    color: var(--font-color);
+    border: 2px solid var(--font-color);
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    outline: none;
+    margin-bottom: 10px;
+    transition: ease all 0.3s;
+}
+input.tabv {
+    padding-left: 10px;
+}
+button.tabv {
+    width: 210px;
+}
+.tabv:hover:not(input):not([disabled="disabled"]) {
+    background: var(--font-color);
+    color: var(--bg-color);
+    cursor: pointer;
+}
+.note {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    color: green;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;
+    animation: Ashow 0.4s;
+}
+.note span {
+    position: relative;
+    top: 40%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    display: inline-block;
+    background-color: var(--bg-color);
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+    border-radius: 20px;
+    width: fit-content !important;
+    height: fit-content !important;
+    padding: 10px;
+    opacity: 0.7;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+@keyframes Ashow {
+    0% {opacity: 0.3;}
+    25% {opacity: 0.7;}
+    50% {opacity: 0.5;}
+    75% {opacity: 0.3;}
+    100% {opacity: 0.7;}
+}
+.disconnect {
+    display: none;
+}
+.desc {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 300px;
+    text-align: justify;
+    color: var(--font-color);
+}

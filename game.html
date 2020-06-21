@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tic Tac Toe Game Online</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="alert.css">
+        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@1,400&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/6e09f3a6c8.js" crossorigin="anonymous"></script>
+        <script src="mode-toggle.js" type="text/javascript"></script>
+        <script src="logic.js" type="text/javascript"></script>
+        <script src="multiplayer.js" type="text/javascript"></script>
+        <script src="alert.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+         <input type="checkbox" id="checkbox" />
+         <div class="slider round"></div>
+       </label>
+       </div>
+        <div class="gcontainer">
+            <div class="status toggler"><span><span id="plr1_name"><i class="fas fa-user-alt"></i></span> (<span id="plr1_sym">x</span>) score: <span id="plr1_score">0</span> <span id="plr2_name"><i class="far fa-user"></i></span> (<span id="plr2_sym">o</span>) score: <span id="plr2_score">0</span></span></div>
+            <div class="gameContainer toggler">
+                <div class="squares">
+                    <div class="row">
+                        <div class="square top left" id="1"></div>
+                        <div class="square top mid" id="2"></div>
+                        <div class="square top right" id="3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="square left" id="4"></div>
+                        <div class="square mid" id="5"></div>
+                        <div class="square right" id="6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="square bottom left" id="7"></div>
+                        <div class="square bottom mid" id="8"></div>
+                        <div class="square bottom right" id="9"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="options">
+                <button class="disconnect" id="btn">Disconnect</button>
+                <button class="connect goto createroom toggler" to="create" id="btn">Invite a friend</button>
+                <button class="connect goto joinroom toggler" to="join" id="btn">Join a friend</button>
+                <br>
+                <div class="tab join" style="display: none;">
+                    <input class="tabv myname" placeholder="Your name" />
+                    <input class="tabv rname" placeholder="Room name" />
+                    <input class="tabv rpassword" placeholder="Room Password" />
+                    <button class="tabv confirm join">Join</button>
+                    <button class="tabv cancel">Cancel</button>
+                </div>
+                <div class="tab create" style="display: none;">
+                    <input class="tabv myname" placeholder="Your name" />
+                    <input class="tabv rname" placeholder="Room name" />
+                    <input class="tabv rpassword" placeholder="Room Password" />
+                    <button class="tabv confirm create">Create</button>
+                    <button class="tabv cancel">Cancel</button>
+                </div>
+            </div>
+            <div class="desc">Tic-tac-toe (American English), 
+                noughts and crosses (British English), 
+                or Xs and Os is a paper-and-pencil game
+                for two players, X and O, who take turns 
+                marking the spaces in a 3×3 grid. The player 
+                who succeeds in placing three of their marks 
+                in a horizontal, vertical, or diagonal row is
+                the winner.</div>
+        </div>
+    </body>
+</html>
